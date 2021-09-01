@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+html{
+    box-sizing: border-box;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+img{
+    max-width: 100%;
+}
+
+$strongCyan :hsl(172, 67%, 45%);
+$veryDarkCyan : hsl(183, 100%, 15%) ;
+$darkGrayishCyan1 :hsl(186, 14%, 43%) ;
+$darkGrayishCyan2 : hsl(184, 14%, 56%);
+$lightGrayishCyan1 : hsl(185, 41%, 84%);
+$lightGrayishCyan2 : hsl(189, 41%, 97%);
+$font-stack: 'Space Mono', monospace;
+
+@mixin flex($direction, $align : center, $justify : center, $wrap : no-wrap){
+    display : flex;
+    flex-direction : $direction;
+    align-items: $align;
+    justify-content: $justify;
+    flex-wrap: $wrap;
+    @content
+}
