@@ -1,115 +1,177 @@
 @use './globals.scss' as *;
 
-body{
-    font-family: $font-stack;
-    background-color: $lightGrayishCyan1;
-    color: $veryDarkCyan;
+body {
+  font-family: $font-stack;
+  background-color: $lightGrayishCyan1;
+  color: $veryDarkCyan;
 
-    @include flex(column)
+  @include flex(column);
 }
 
-.logo{
-    margin: 5vh auto;
+.logo {
+  margin: 5vh auto;
 }
 
-.card{
-    @include flex(column, center, center);
-    background-color: white;
-   
-    width: 85%;
+.card {
+  @include flex(column, center, center);
+  background-color: white;
+
+  width: 85%;
+  padding: 1.5rem;
+
+  border-radius: 20px;
+
+  &__contents {
+    margin: 0 auto;
+    width: 95%;
+    > div {
+      margin-bottom: 2.5rem;
+    }
+  }
+  &__input {
+    position: relative;
+    &-input {
+      width: 95%;
+      border: none;
+      border-radius: 5px;
+      display: block;
+
+      font-size: 1.5rem;
+      font-family: $font-stack;
+      font-weight: 700;
+      padding: 0.2em 0.5em;
+
+      background-color: $lightGrayishCyan2;
+      background-size: 12px;
+      background-position: left 1rem center;
+      background-repeat: no-repeat;
+
+      color: $veryDarkCyan;
+      text-align: right;
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px $strongCyan;
+      }
+      &.bill {
+        background-image: url("../../images/icon-dollar.svg");
+        &.invalid {
+          box-shadow: 0 0 0 2px red;
+        }
+      }
+      &.people {
+        background-image: url("../../images/icon-person.svg");
+        &.invalid {
+          box-shadow: 0 0 0 2px red;
+        }
+      }
+      &.custom {
+        display: inline-block;
+        flex-basis: 39%;
+      }
+    }
+  }
+  &__title {
+    display: block;
+    margin-bottom: 0.7rem;
+    &.invalid::before {
+      position: absolute;
+      content: "Invalid Amount";
+      color: red;
+      z-index: 10;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  &__tip {
+    &-select {
+      display: flex;
+      flex-wrap: wrap;
+      //   align-content: center;
+      gap: 1rem;
+    }
+  }
+  &__summary {
+    @include flex(column, center center);
+    width: 90%;
     padding: 1.5rem;
-    
-    border-radius: 20px;
-
-    &__contents{
-        margin: 0 auto;
-        width: 95%;
-        > div {
-            margin-bottom: 2.5rem;
-        }
-    }
-    &__input{
-        &-input{
-            width: 95%;
-            border: none;
-            display: block;
-
-            font-size: 1.5rem;
-            font-family: $font-stack;
-            font-weight: 700;
-            padding: .2em .5em;
-
-            background-color: $lightGrayishCyan2;
-            background-size: 4%;
-            background-position: left 1rem center;
-            background-repeat: no-repeat;
-            
-            color: $veryDarkCyan;
-            text-align: right;
-            &.bill{
-                background-image: url('../../images/icon-dollar.svg');
-            }
-            &.people{
-                background-image: url('../../images/icon-person.svg');
-            }
-        }     
-    }
-    &__title{
-        display: block;
-        margin-bottom: .7rem;
-    }
-
-    &__tip{
-        &-select{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-
-        }
-    }
-    &__summary{
-        width: 90%;
-        padding: 1.5rem;
-        margin: 0 auto;
-        border-radius: 15px;
-        background-color: $veryDarkCyan;
-        color: white;
-        &-container{
-            @include flex(row, center, space-between);
-            margin-bottom:1.5rem;
-        }
-        &-amount{
-            font-weight: 700;
-            font-size: 3rem;
-            color: $strongCyan;
-        }
-        &-title{
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        &-person{
-            color: $lightGrayishCyan1;
-            opacity: .7;
-        }
-}
-}
-
-.btn{
-    font-family: $font-stack;
-    font-size: 1.5rem;
+    margin: 0 auto;
+    border-radius: 15px;
     background-color: $veryDarkCyan;
     color: white;
-
-    border: none;
-    border-radius: 5px;
-
-    padding: .2em 1.5em;
-    flex-basis: 40%;
-    &__reset{
-        background-color: $strongCyan;
-        color: $veryDarkCyan;
-        text-transform: uppercase;
-        font-weight: 700;
-        width: 100%;
+    &-container {
+      @include flex(row, center, space-between);
+      margin-bottom: 1.5rem;
     }
+    &-amount {
+      font-weight: 700;
+      font-size: 3rem;
+      color: $strongCyan;
+    }
+    &-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    &-person {
+      color: $darkGrayishCyan2;
+    }
+  }
+}
+
+.btn {
+  font-family: $font-stack;
+  font-size: 1.5rem;
+  background-color: $veryDarkCyan;
+  color: white;
+
+  border: none;
+  border-radius: 6px;
+
+  padding: 0.2em 0;
+  flex-basis: 45%;
+  &:hover {
+    cursor: pointer;
+    background-color: $lightGrayishCyan1;
+  }
+  &__reset {
+    background-color: $strongCyan;
+    color: $veryDarkCyan;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 100%;
+    padding: 0.4em 1.5em;
+    &:hover {
+      background-color: $lightGrayishCyan1;
+    }
+  }
+  &__tip--selected {
+    background-color: $strongCyan;
+    color: $veryDarkCyan;
+  }
+}
+
+@media screen and (min-width: 830px) {
+  .card {
+    flex-direction: row;
+    gap: 2rem;
+    &__input {
+      &-input {
+        &.custom {
+          flex-basis: 23%;
+        }
+      }
+    }
+
+    &__summary {
+      align-self: stretch;
+      justify-content: space-between;
+      // gap: 7.5rem;
+    }
+  }
+  .btn__tip {
+    flex-basis: 30%;
+  }
+  .btn__reset {
+    flex-basis: auto;
+  }
 }

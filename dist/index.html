@@ -1,64 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.e61c6e6e.png">
-  <link rel="stylesheet" href="/style.a6dae8f7.css">
-  <title>Frontend Mentor | Tip calculator app</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.e61c6e6e.png">
+    <link rel="stylesheet" href="/style.a6dae8f7.css">
+    <title>Frontend Mentor | Tip calculator app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>.attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }</style>
-<script src="/style.a6dae8f7.js"></script></head>
-<body>
-<img src="/logo.f3865969.svg" alt="logo" class="logo">
-<main class="card">
-    <section class="card__contents">
-      <div class="card__input">
-        <label for="bill" class="card__title bill">Bill</label>
-        <input type="number" id="bill" class="bill card__input-input ">
-      </div>
-      <div class="card__tip">
-        <p class="card__title tip">Select Tip %</p>
-        <div class="card__tip-select">
-          <button class="btn btn__tip">5%</button>
-          <button class="btn btn__tip">10%</button>
-          <button class="btn btn__tip btn__tip-main">15%</button>
-          <button class="btn btn__tip">25%</button>
-          <button class="btn btn__tip">50%</button>
-          <button class="btn btn__tip btn__tip-custom">Custom</button>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>.attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }</style>
+  <script src="/style.a6dae8f7.js"></script></head>
+  <body>
+    <img src="/logo.f3865969.svg" alt="logo" class="logo">
+    <main class="card">
+      <section class="card__contents">
+        <div class="card__input">
+          <label for="bill" class="card__title bill">Bill</label>
+          <input type="number" id="bill" class="bill card__input-input" min="1">
         </div>
-      </div>
-      <div class="card__input">
-        <label for="people" class="card__title people">    Number of People      </label>
-        <input type="number" min="1" max="100" step="1" id="people" class="people card__input-input">
-      </div>
-    </section>
-    <section class="card__summary">
-      <div class="card__summary-container">
-        <div class="card__summary-details">
-          <p class="card__summary-title">Tip Amount</p>
-          <p class="card__summary-person">/ person</p>
+        <div class="card__tip">
+          <p class="card__title tip">Select Tip %</p>
+          <div class="card__tip-select">
+            <button class="btn btn__tip" data-tip-percent="5">5%</button>
+            <button class="btn btn__tip" data-tip-percent="10">10%</button>
+            <button class="btn btn__tip btn__tip--selected" data-tip-percent="15">
+              15%
+            </button>
+            <button class="btn btn__tip" data-tip-percent="25">25%</button>
+            <button class="btn btn__tip" data-tip-percent="50">50%</button>
+            <input type="number" name="custom" id="custom" class="custom card__input-input" placeholder="Custom" maxlength="3">
+          </div>
         </div>
-      <div class="card__summary-amount">$0</div>
-      </div>
-      <div class="card__summary-container">
-        <div class="card__summary-details">
-          <p class="card__summary-title">Total</p>
-          <p class="card__summary-person">/ person</p>
+        <div class="card__input">
+          <label for="people" class="card__title people">
+            Number of People
+          </label>
+          <input type="number" min="1" max="50" step="1" id="people" class="people card__input-input" maxlength="2">
         </div>
-      <div class="card__summary-amount">$0</div>
-      </div>
-      <button class="btn btn__reset">Reset</button>
-    </section>
-</main>
-  
-  <!-- <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Fazza Razaq Amiarso</a>.
-  </div> -->
-  <script src="/main.1f19ae8e.js"></script>
-</body>
+      </section>
+      <section class="card__summary">
+        <div>
+          <div class="card__summary-container">
+            <div class="card__summary-details">
+              <p class="card__summary-title">Tip Amount</p>
+              <p class="card__summary-person">/ person</p>
+            </div>
+            <div class="card__summary-amount card__summary-amount-tip">
+              $0.00
+            </div>
+          </div>
+          <div class="card__summary-container">
+            <div class="card__summary-details">
+              <p class="card__summary-title">Total</p>
+              <p class="card__summary-person">/ person</p>
+            </div>
+            <div class="card__summary-amount card__summary-amount-total">
+              $0.00
+            </div>
+          </div>
+        </div>
+        <button class="btn btn__reset">Reset</button>
+      </section>
+    </main>
+    <script src="/main.1f19ae8e.js"></script>
+  </body>
 </html>

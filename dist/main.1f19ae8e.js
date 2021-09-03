@@ -118,9 +118,91 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-'use strict';
+"use strict";
 
-console.log('Hello');
+var billInput = document.querySelector("#bill");
+var billTitle = document.querySelector(".bill");
+var peopleTitle = document.querySelector(".people");
+var peopleInput = document.querySelector("#people");
+var customInput = document.querySelector("#custom");
+var tipAmount = document.querySelector(".card__summary-amount-tip");
+var totalAmount = document.querySelector(".card__summary-amount-total");
+var tipBtnContainer = document.querySelector(".card__tip");
+var allTipBtns = document.querySelectorAll(".btn__tip");
+var resetBtn = document.querySelector(".btn__reset");
+var selectedTip = +document.querySelector(".btn__tip--selected").dataset.tipPercent;
+var bill = 0;
+var people = 1;
+tipBtnContainer.addEventListener("click", function (e) {
+  var clickedBtn = e.target.closest(".btn__tip");
+
+  if (e.target === customInput) {
+    unselectAllBtns();
+    customInput.addEventListener("input", function () {
+      selectedTip = customInput.value;
+      updateSummary();
+    });
+  }
+
+  if (!clickedBtn) return;
+  unselectAllBtns();
+  clickedBtn.classList.add("btn__tip--selected");
+  selectedTip = clickedBtn.dataset.tipPercent;
+  updateSummary();
+});
+billInput.addEventListener("input", function () {
+  bill = billInput.value;
+  removeInvalid(billInput, billTitle);
+
+  if (bill < 0 || !bill) {
+    bill = "0";
+    addInvalid(billInput, billTitle);
+  }
+
+  updateSummary();
+});
+peopleInput.addEventListener("input", function () {
+  people = peopleInput.value;
+  removeInvalid(peopleInput, peopleTitle);
+
+  if (people < 1 || !people) {
+    people = "1";
+    addInvalid(peopleInput, peopleTitle);
+  }
+
+  updateSummary();
+});
+resetBtn.addEventListener("click", function () {
+  billInput.value = "";
+  peopleInput.value = "";
+  customInput.value = "";
+  bill = 0;
+  updateSummary();
+});
+
+var updateSummary = function updateSummary() {
+  var tip = bill * (selectedTip / 100);
+  var individualTip = tip / people;
+  var individualTotal = bill / people + individualTip;
+  tipAmount.textContent = "$".concat(individualTip.toFixed(2));
+  totalAmount.textContent = "$".concat(individualTotal.toFixed(2));
+};
+
+var unselectAllBtns = function unselectAllBtns() {
+  allTipBtns.forEach(function (btn) {
+    btn.classList.remove("btn__tip--selected");
+  });
+};
+
+var addInvalid = function addInvalid(input, label) {
+  input.classList.add("invalid");
+  label.classList.add("invalid");
+};
+
+var removeInvalid = function removeInvalid(input, label) {
+  input.classList.remove("invalid");
+  label.classList.remove("invalid");
+};
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -149,7 +231,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57995" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59740" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
